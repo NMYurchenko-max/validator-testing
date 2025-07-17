@@ -1,0 +1,321 @@
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+  background-position: left center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.left-half {
+  width: 50%;
+  height: 100vh;
+}
+
+.right-half {
+  width: 50%;
+  padding-top: 80px;
+  /* поднять заголовок на 80px */
+  padding-right: 150px;
+  padding-left: 150px;
+  /* сдвинуть вправо от картинки на 150px */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  gap: 20px;
+}
+
+.widget-title {
+  margin-bottom: 20px;
+  color: #221E1B;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+}
+
+.input-button-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-height: 40px;
+}
+
+/* Первый вариант для инпута в группе */
+.input-button-group input#card-number {
+  flex-grow: 1;
+  height: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Первый вариант для кнопки в группе */
+.input-button-group button#validate-button {
+  height: 100%;
+  width: 140px;
+  padding: 0 10px;
+  background-color: #4CAF50;
+  /* зеленая кнопка */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-button-group button#validate-button:hover {
+  background-color: #45a049;
+}
+
+input#card-number {
+  flex-grow: 1;
+  height: 40px;
+  font-size: 16px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block;
+}
+
+input#card-number.invalid-input {
+  border-color: #FE2B2F;
+  background-color: rgba(254, 43, 47, 0.2);
+}
+
+.card-types {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 60px;
+  /* Явная высота для контейнера иконок карт */
+}
+
+/* Первый вариант для .card – оставим второй вариант (с высотой 60px) */
+/*
+.card {
+  width: 50px;
+  height: 50px; /* высота 50px */
+/*
+  margin: 0 5px; /* Уменьшенный внешний отступ */
+/*
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+*/
+/* Второй вариант для .card – активный вариант */
+.card {
+  width: 50px;
+  height: 60px;
+  /* Явная высота для иконок карт */
+  margin: 0 5px;
+  /* Уменьшенный внешний отступ */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.card.visible {
+  opacity: 1;
+  z-index: 10;
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -ms-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2);
+}
+
+.buyer-icon {
+  width: 80px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: 2px;
+  background-image: url('../images/ico-buyer.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-indent: -9999px;
+  /* скрыть текст */
+  opacity: 0.5;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: default;
+}
+
+.buyer-icon.visible {
+  opacity: 1;
+  z-index: 10;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/* Убираем маленький алиас под верхним экраном */
+/* Убрано правило скрытия всех img в .card-types, чтобы не скрывать карточки */
+/* Добавлено более точное правило для лишнего алиаса, если он есть */
+.alias-img {
+  display: none !important;
+}
+
+
+/* Класс для карт с фоновыми изображениями */
+.visa {
+  background-image: url('../images/visa.svg');
+}
+
+.mastercard {
+  background-image: url('../images/mastercard.svg');
+}
+
+.amex {
+  background-image: url('../images/amex.svg');
+}
+
+.mir {
+  background-image: url('../images/mir.svg');
+}
+
+.jcb {
+  background-image: url('../images/jcb.svg');
+}
+
+.unionpay {
+  background-image: url('../images/unionpay.svg');
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.message.valid {
+  background-color: rgba(76, 139, 68, 0.2);
+  color: #4C8F4A;
+}
+
+.message.invalid {
+  background-color: rgba(254, 43, 47, 0.2);
+  color: #FE2B2F;
+}
+
+.validator-widget {
+  background-color: rgba(251, 245, 249, 0.9);
+  /* Полупрозрачный светлый фон для виджета */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  width: 400px;
+  /* Ширина виджета */
+  position: relative;
+  /* Относительное позиционирование для дальнейшего оформления */
+  margin-left: auto;
+  /* Выравнивание по правому краю */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.swal2-container {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  margin-top: 10px !important;
+  z-index: 10000 !important;
+  pointer-events: none;
+}
+
+.swal2-popup {
+  pointer-events: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .right-half {
+    padding-right: 100px;
+    padding-left: 100px;
+  }
+
+  .validator-widget {
+    width: 350px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-half,
+  .right-half {
+    width: 100%;
+    height: auto;
+  }
+
+  .right-half {
+    padding-top: 40px;
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  .validator-widget {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .right-half {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .validator-widget {
+    width: 100%;
+  }
+
+  .input-button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-button-group button#validate-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .widget-title {
+    font-size: 20px;
+  }
+
+  .message {
+    font-size: 12px;
+  }
+}
